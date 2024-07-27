@@ -1,13 +1,20 @@
 <%- include("partials/header") -%>
-<h1><%= postTitle %></h1>
-<p><%= postPost %></p>
-<form action="/delete" method="post">
-  <button type="submit" name="del" value="<%= postId %>">delete</button>
-</form>
-<form action="/upd" method="post">
-  <input type="hidden" name="name" value="<%= postTitle %>" />
-  <input type="hidden" name="desc" value="<%= postPost %>" />
-  <button type="submit" name="update" value="<%= postId %>">update</button>
-</form>
+<h1><%= post.postName %></h1>
+<p><%= post.postDesc %></p>
 
+    <button  id="delete" >delete</button>  
+
+<a href="/posts/update/<%= post.id %>"><button>update</button></a>
+
+<script>
+  document.getElementById('delete').addEventListener('click', function() {
+    if (confirm('Are you sure you want to delete this post?')) {
+      fetch("/posts/<%- post.id %>",{
+        method: 'DELETE'
+      })
+      window.location.href = "/posts";
+    }
+  });
+ 
+</script>
 <%- include("partials/footer") %>
