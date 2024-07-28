@@ -12,7 +12,7 @@ const Post = mongoose.model("Post", {
   postDesc: {
     type: String,
     required: true,
-    minlength: 50,
+    minlength: 10,
     maxlength: 4500,
     trim: true,
   },
