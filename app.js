@@ -5,6 +5,7 @@ const app = express();
 const postRoute =require('./router/postRoute')
 const contactRoute=require('./router/contactRoute')
 const aboutRoute=require('./router/abouteRoute')
+
 // middlewares
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));

@@ -1,20 +1,14 @@
-require("dotenv").config()
-const mongoose = require("mongoose");
 const app=require('./app')
-const connectDB = async () => {
-  try {
-    const conn = await mongoose.connect(process.env.MONGO);
-    console.log("connected");
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-};
-
+const sqlite = require("sqlite3").verbose();
+const db = new sqlite.Database("./blogs.db", sqlite.OPEN_READWRITE, (err) => {
+  if (err) console.log(err);
+});
+exports.database=db
 const PORT = process.env.PORT || 3000;
 
-connectDB().then(() => {
+// connectDB().then(() => {
   app.listen(PORT, () => {
     console.log("listening for requests");
   });
-});
+
+// });
